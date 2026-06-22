@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help My House | Home Improvements, Maintenance &amp; Emergency Callouts — Hertfordshire &amp; North London</title>
+  <meta name="description" content="Help My House is a trusted home improvement service covering Hertfordshire and North London. New works, improvements, maintenance and 24/7 emergency callouts. All trades, one trusted team. Free quotes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23f4711f'/><path d='M50 18 L80 42 V82 H58 V58 H42 V82 H20 V42 Z' fill='white'/></svg>" />
+</head>
+<body>
+
+  <!-- Top emergency strip -->
+  <div class="emergency-strip">
+    <div class="container emergency-strip__inner">
+      <span class="emergency-strip__text">
+        <span class="pulse-dot"></span>
+        24/7 Emergency callouts across Hertfordshire &amp; North London
+      </span>
+      <a href="tel:08001234567" class="emergency-strip__phone">Call now: 0800 123 4567</a>
+    </div>
+  </div>
+
+  <!-- Header / Nav -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="Help My House home">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 100 100" width="40" height="40"><rect width="100" height="100" rx="22" fill="#f4711f"/><path d="M50 16 L82 42 V84 H58 V58 H42 V84 H18 V42 Z" fill="#fff"/></svg>
+        </span>
+        <span class="logo__text">Help My House<small>Hertfordshire &amp; North London</small></span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="#services">Services</a>
+        <a href="#why">Why us</a>
+        <a href="#areas">Areas</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header__cta">
+        <a href="#contact" class="btn btn--primary">Get a free quote</a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="eyebrow">Trusted local tradespeople &middot; Fully insured</span>
+        <h1>One trusted team for <span class="hl">every job</span> around your home</h1>
+        <p class="hero__lead">
+          From a dripping tap to a full refurbishment, Help My House covers new works,
+          improvements, maintenance and emergency callouts across Hertfordshire and North London.
+          All skill sets, one reliable phone call.
+        </p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--primary btn--lg">Get my free quote</a>
+          <a href="tel:08001234567" class="btn btn--ghost btn--lg">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>
+            0800 123 4567
+          </a>
+        </div>
+        <ul class="hero__trust">
+          <li><strong>★ 4.9</strong> average rating</li>
+          <li><strong>15+ yrs</strong> experience</li>
+          <li><strong>£5m</strong> public liability cover</li>
+        </ul>
+
+        <div class="owner">
+          <img class="owner__photo" src="assets/principle.jpg" alt="Rob Dettmer, founder of Help My House" />
+          <div class="owner__text">
+            <strong class="owner__name">Rob Dettmer</strong>
+            <span class="owner__role">CEO &amp; Senior Engineer</span>
+            <span class="owner__line">Your job, handled personally from start to finish.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__card">
+        <div class="quote-card">
+          <h3>Request a callback</h3>
+          <p class="quote-card__sub">We'll get back to you within the hour, 8am–8pm.</p>
+          <form class="quote-card__form" onsubmit="return HMH.submitForm(event,'callback')">
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="tel" name="phone" placeholder="Phone number" required />
+            <select name="service" required>
+              <option value="" disabled selected>What do you need?</option>
+              <option>Emergency callout</option>
+              <option>Plumbing</option>
+              <option>Electrical</option>
+              <option>Carpentry &amp; joinery</option>
+              <option>Painting &amp; decorating</option>
+              <option>Kitchen / bathroom</option>
+              <option>General maintenance / handyman</option>
+              <option>Other</option>
+            </select>
+            <button type="submit" class="btn btn--primary btn--block">Request callback</button>
+          </form>
+          <p class="quote-card__note">No call-out fee for quotes. No obligation.</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero__wave" aria-hidden="true"></div>
+  </section>
+
+  <!-- Trust bar -->
+  <section class="trustbar">
+    <div class="container trustbar__inner">
+      <div class="trustbar__item"><svg viewBox="0 0 24 24" width="22"><path fill="currentColor" d="m12 1 9 4v6c0 5-3.8 9.4-9 11-5.2-1.6-9-6-9-11V5Zm-1.2 14.2 6-6-1.4-1.4-4.6 4.6-2.2-2.2-1.4 1.4Z"/></svg> Fully insured &amp; vetted</div>
+      <div class="trustbar__item"><svg viewBox="0 0 24 24" width="22"><path fill="currentColor" d="M12 2 4 6v6c0 4.4 3.4 8.7 8 10 4.6-1.3 8-5.6 8-10V6Z"/></svg> Workmanship guaranteed</div>
+      <div class="trustbar__item"><svg viewBox="0 0 24 24" width="22"><path fill="currentColor" d="M13 2 3 14h7l-1 8 10-12h-7Z"/></svg> Fast, no-fuss callouts</div>
+      <div class="trustbar__item"><svg viewBox="0 0 24 24" width="22"><path fill="currentColor" d="M12 1 3 5v6c0 5 3.8 9.4 9 11 5.2-1.6 9-6 9-11V5Z"/></svg> Free, honest quotes</div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">What we do</span>
+        <h2>Every skill set, covered</h2>
+        <p>Whether it's a quick repair or a full project, our multi-skilled team handles it all — so you only need one number for the whole house.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-card__icon">🔧</div>
+          <h3>Plumbing</h3>
+          <p>Leaks, taps, toilets, radiators, burst pipes, blockages, bathroom installs and emergency water shut-offs.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-card__icon">💡</div>
+          <h3>Electrical</h3>
+          <p>Lights, sockets, switches, fault finding, fuse boards, smoke alarms and full or part rewires by qualified electricians.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-card__icon">🪚</div>
+          <h3>Carpentry &amp; joinery</h3>
+          <p>Doors, skirting, flooring, shelving, fitted storage, decking, flat-pack and bespoke woodwork.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-card__icon">🎨</div>
+          <h3>Painting &amp; decorating</h3>
+          <p>Interior and exterior painting, wallpapering, plastering, coving and a clean, tidy finish every time.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-card__icon">🛁</div>
+          <h3>Kitchens &amp; bathrooms</h3>
+          <p>Full installs and refurbishments, tiling, splashbacks, worktops, taps and appliance fitting.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-card__icon">🧱</div>
+          <h3>Building &amp; new works</h3>
+          <p>Extensions, conversions, structural repairs, brickwork, rendering and project management.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-card__icon">🌿</div>
+          <h3>Gardens &amp; exterior</h3>
+          <p>Fencing, patios, driveways, decking, jet washing, guttering, fascias and general landscaping.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-card__icon">🛠️</div>
+          <h3>Handyman &amp; maintenance</h3>
+          <p>Odd jobs, repairs, flat-pack, curtains, shelves, locks, TV mounting and planned property maintenance.</p>
+        </article>
+        <article class="service-card service-card--accent">
+          <div class="service-card__icon">🚨</div>
+          <h3>24/7 emergency callouts</h3>
+          <p>Burst pipes, electrical faults, leaks, lockouts, storm damage — we'll make it safe, fast.</p>
+          <a href="tel:08001234567" class="service-card__link">Call 0800 123 4567 →</a>
+        </article>
+      </div>
+
+      <p class="services-note">Don't see your job listed? If it's around the house, the chances are we cover it. <a href="#contact">Just ask.</a></p>
+    </div>
+  </section>
+
+  <!-- Emergency band -->
+  <section class="emergency-band">
+    <div class="container emergency-band__inner">
+      <div>
+        <span class="eyebrow eyebrow--light">Something gone wrong?</span>
+        <h2>Emergency? We're on our way.</h2>
+        <p>Burst pipes, leaks, electrical faults, break-in repairs and storm damage — our rapid-response team covers Hertfordshire and North London around the clock, every day of the year.</p>
+      </div>
+      <div class="emergency-band__action">
+        <a href="tel:08001234567" class="btn btn--white btn--lg">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>
+          0800 123 4567
+        </a>
+        <span class="emergency-band__small">Average response under 60 minutes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why us / How it works -->
+  <section class="section section--alt" id="why">
+    <div class="container why__grid">
+      <div class="why__intro">
+        <span class="eyebrow">Why Help My House</span>
+        <h2>Reliable people, doing it properly</h2>
+        <p>We started Help My House because finding one trustworthy tradesperson — let alone several — shouldn't be so hard. We turn up when we say we will, do tidy work, and charge fair, clear prices.</p>
+        <div class="why__cta">
+          <a href="#contact" class="btn btn--primary">Get a free quote</a>
+        </div>
+      </div>
+      <ul class="why__list">
+        <li>
+          <span class="why__num">01</span>
+          <div><h3>One call, all trades</h3><p>No juggling five contractors. We coordinate the whole job under one trusted roof.</p></div>
+        </li>
+        <li>
+          <span class="why__num">02</span>
+          <div><h3>Fair, transparent pricing</h3><p>Clear quotes before we start, no surprise charges and no call-out fee just for a quote.</p></div>
+        </li>
+        <li>
+          <span class="why__num">03</span>
+          <div><h3>Insured &amp; guaranteed</h3><p>£5m public liability cover and a workmanship guarantee on everything we do.</p></div>
+        </li>
+        <li>
+          <span class="why__num">04</span>
+          <div><h3>Local &amp; reliable</h3><p>Based in Hertfordshire, covering North London — friendly faces who keep their word.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Simple from start to finish</span>
+        <h2>How it works</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="step__n">1</span><h3>Get in touch</h3><p>Call us or request a callback. Tell us what's going on.</p></div>
+        <div class="step"><span class="step__n">2</span><h3>Free quote</h3><p>We assess the job and give you a clear, honest price.</p></div>
+        <div class="step"><span class="step__n">3</span><h3>We get it done</h3><p>Skilled tradespeople do the work, on time and tidy.</p></div>
+        <div class="step"><span class="step__n">4</span><h3>Happy home</h3><p>You only pay when you're happy. Guaranteed work.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas -->
+  <section class="section section--alt" id="areas">
+    <div class="container areas__grid">
+      <div>
+        <span class="eyebrow">Where we work</span>
+        <h2>Covering Hertfordshire &amp; North London</h2>
+        <p>If you're in or around any of these areas, we can help. Not sure if we reach you? Just give us a call.</p>
+        <ul class="areas__list">
+          <li>St Albans</li><li>Watford</li><li>Hertford</li><li>Stevenage</li>
+          <li>Welwyn Garden City</li><li>Hatfield</li><li>Hitchin</li><li>Hemel Hempstead</li>
+          <li>Hoddesdon</li><li>Ware</li><li>Potters Bar</li><li>Barnet</li>
+          <li>Enfield</li><li>Borehamwood</li><li>Cheshunt</li><li>Harpenden</li>
+        </ul>
+      </div>
+      <div class="areas__map" aria-hidden="true">
+        <div class="areas__pin areas__pin--1">📍</div>
+        <div class="areas__pin areas__pin--2">📍</div>
+        <div class="areas__pin areas__pin--3">📍</div>
+        <svg viewBox="0 0 400 360" class="areas__svg">
+          <path d="M60 120 Q120 60 200 80 Q300 100 340 180 Q360 260 280 300 Q180 340 110 280 Q40 220 60 120 Z" fill="rgba(244,113,31,.12)" stroke="#f4711f" stroke-width="2" stroke-dasharray="6 6"/>
+          <text x="200" y="190" text-anchor="middle" class="areas__svg-label">Hertfordshire</text>
+          <text x="210" y="290" text-anchor="middle" class="areas__svg-label areas__svg-label--sm">North London</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">What customers say</span>
+        <h2>Rated 4.9 by local homeowners</h2>
+      </div>
+      <div class="reviews">
+        <blockquote class="review">
+          <div class="stars">★★★★★</div>
+          <p>"Came out within the hour when our kitchen flooded. Sorted the leak, cleaned up and charged a fair price. Lifesavers."</p>
+          <footer>— Sarah M., St Albans</footer>
+        </blockquote>
+        <blockquote class="review">
+          <div class="stars">★★★★★</div>
+          <p>"Did our full bathroom refit plus a load of odd jobs. One team for everything made it so easy. Tidy and professional."</p>
+          <footer>— David & Priya, Watford</footer>
+        </blockquote>
+        <blockquote class="review">
+          <div class="stars">★★★★★</div>
+          <p>"Honestly the most reliable tradespeople we've used. Turned up on time, no hidden costs, lovely finish on the decorating."</p>
+          <footer>— Janet K., Hertford</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Quote -->
+  <section class="section section--contact" id="contact">
+    <div class="container contact__grid">
+      <div class="contact__info">
+        <span class="eyebrow eyebrow--light">Get in touch</span>
+        <h2>Get your free, no-obligation quote</h2>
+        <p>Tell us about your job and we'll come back with a clear price. For anything urgent, call us any time — day or night.</p>
+        <ul class="contact__list">
+          <li><span>📞</span><div><strong>Phone</strong><a href="tel:08001234567">0800 123 4567</a></div></li>
+          <li><span>✉️</span><div><strong>Email</strong><a href="mailto:hello@helpmyhouse.co.uk">hello@helpmyhouse.co.uk</a></div></li>
+          <li><span>🕑</span><div><strong>Hours</strong>Quotes 8am–8pm &middot; Emergencies 24/7</div></li>
+          <li><span>📍</span><div><strong>Area</strong>Hertfordshire &amp; North London</div></li>
+        </ul>
+      </div>
+
+      <div class="contact__form-wrap">
+        <form class="contact__form" onsubmit="return HMH.submitForm(event,'contact')">
+          <div class="field-row">
+            <label>Name<input type="text" name="name" placeholder="Your full name" required /></label>
+            <label>Phone<input type="tel" name="phone" placeholder="Your phone number" required /></label>
+          </div>
+          <div class="field-row">
+            <label>Email<input type="email" name="email" placeholder="you@email.com" /></label>
+            <label>Postcode<input type="text" name="postcode" placeholder="e.g. AL1 1AA" /></label>
+          </div>
+          <label>Service needed
+            <select name="service" required>
+              <option value="" disabled selected>Choose a service…</option>
+              <option>Emergency callout</option>
+              <option>Plumbing</option>
+              <option>Electrical</option>
+              <option>Carpentry &amp; joinery</option>
+              <option>Painting &amp; decorating</option>
+              <option>Kitchen / bathroom</option>
+              <option>Building / new works</option>
+              <option>Gardens &amp; exterior</option>
+              <option>General maintenance / handyman</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Tell us about the job
+            <textarea name="message" rows="4" placeholder="A short description of what you need…"></textarea>
+          </label>
+          <button type="submit" class="btn btn--primary btn--block btn--lg">Send my request</button>
+          <p class="contact__formnote" id="formNote"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <div class="logo logo--footer">
+          <span class="logo__mark"><svg viewBox="0 0 100 100" width="34" height="34"><rect width="100" height="100" rx="22" fill="#f4711f"/><path d="M50 16 L82 42 V84 H58 V58 H42 V84 H18 V42 Z" fill="#fff"/></svg></span>
+          <span class="logo__text">Help My House</span>
+        </div>
+        <p>Home improvements, maintenance and 24/7 emergency callouts across Hertfordshire and North London. All skill sets, one trusted team.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Services</h4>
+        <a href="#services">Plumbing</a>
+        <a href="#services">Electrical</a>
+        <a href="#services">Carpentry</a>
+        <a href="#services">Painting &amp; decorating</a>
+        <a href="#services">Emergency callouts</a>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <a href="#why">Why us</a>
+        <a href="#areas">Areas covered</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer__col">
+        <h4>Get in touch</h4>
+        <a href="tel:08001234567">0800 123 4567</a>
+        <a href="mailto:hello@helpmyhouse.co.uk">hello@helpmyhouse.co.uk</a>
+        <p class="footer__small">Quotes 8am–8pm<br/>Emergencies 24/7</p>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <div class="container footer__bar-inner">
+        <span>&copy; <span id="year"></span> Help My House &middot; helpmyhouse.co.uk</span>
+        <span>Fully insured &middot; £5m public liability &middot; Workmanship guaranteed</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="tel:08001234567" class="float-call" aria-label="Call Help My House">
+    <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1Z"/></svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
