@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trevs 205 3D</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #eeece8; overflow: hidden; font-family: Arial, Helvetica, sans-serif; }
+  #tag { position: absolute; left: 24px; top: 18px; color: #222; }
+  #tag b { font-size: 22px; display: block; }
+  #tag span { font-size: 14px; color: #666; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="tag"><b>Trevs 205 — under-stair cupboards</b><span>3270 × 2270 × 700 · grey doors, white carcass and shelves, chrome handles</span></div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+// ---- Measurements (mm) ----
+const LENGTH = 3270, HEIGHT = 2270, DEPTH = 700, F = 470;
+const SLOPE_END = 2485, SLOPE = HEIGHT / SLOPE_END;
+const T = 18;                       // MDF thickness
+const STAIR_DEPTH = 330, N_STEPS = 10;
+const OPEN_DEG = 72;                // how far the doors are swung open
+const CUPBOARDS = [                 // start x, width, shelves, hinge side(s)
+  { x: F,        w: 600,  shelves: 1, hinge: 'L' },
+  { x: F + 600,  w: 600,  shelves: 3, hinge: 'L' },
+  { x: F + 1200, w: 600,  shelves: 4, hinge: 'L' },
+  { x: F + 1800, w: 1000, shelves: 5, hinge: 'pair' },
+];
+const underside = x => Math.min(SLOPE * x, HEIGHT);
+const xAt = h => h / SLOPE;
+
+const params = new URLSearchParams(location.search);
+const view = params.get('view') || 'left';
+const still = params.has('shot');
+if (still) document.getElementById('tag').style.display = 'none';
+
+// ---- Renderer / scene ----
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(still ? 1 : Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#c9c3b8');
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+const root = new THREE.Group();
+root.scale.setScalar(0.001);        // build in mm, display in metres
+scene.add(root);
+
+// ---- Materials ----
+const white  = new THREE.MeshStandardMaterial({ color: '#f5f5f2', roughness: 0.55 });
+const inside = new THREE.MeshStandardMaterial({ color: '#efeeea', roughness: 0.7 });
+const grey   = new THREE.MeshStandardMaterial({ color: '#7f8285', roughness: 0.45 });
+const chrome = new THREE.MeshStandardMaterial({ color: '#ffffff', metalness: 1.0, roughness: 0.08 });
+const floorM = new THREE.MeshStandardMaterial({ color: '#a98d6a', roughness: 0.8 });
+const wallM  = new THREE.MeshStandardMaterial({ color: '#c9c3b8', roughness: 0.9 });
+
+function add(mesh, parent = root) {
+  mesh.castShadow = true; mesh.receiveShadow = true; parent.add(mesh); return mesh;
+}
+function box(w, h, d, mat, cx, cy, cz, parent) {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+  m.position.set(cx, cy, cz); return add(m, parent);
+}
+function prism(pts, depth, mat) {      // polygon in x/y, extruded along +z
+  const s = new THREE.Shape(pts.map(([x, y]) => new THREE.Vector2(x, y)));
+  return new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth, bevelEnabled: false }), mat);
+}
+
+// ---- Room ----
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(9000, 9000), floorM);
+floor.rotation.x = -Math.PI / 2; floor.position.set(1600, 0, 1500); floor.receiveShadow = true; root.add(floor);
+box(6000, 3000, 20, wallM, 1600, 1500, -DEPTH - 10);            // back wall (also the cupboard backs)
+
+// ---- Staircase (white) ----
+const going = SLOPE_END / N_STEPS, rise = going * SLOPE;
+const stair = [[0, 0], [0, STAIR_DEPTH]];
+let sx = 0, sy = STAIR_DEPTH;
+for (let i = 0; i < N_STEPS; i++) { sx += going; stair.push([sx, sy]); sy += rise; stair.push([sx, sy]); }
+const landingTop = sy;
+stair.push([LENGTH, landingTop], [LENGTH, HEIGHT], [SLOPE_END, HEIGHT]);
+const stairMesh = prism(stair, DEPTH, white); stairMesh.position.z = -DEPTH; add(stairMesh);
+
+// ---- Carcass: end panels, dividers, base ----
+const panelXs = [F, F + 600, F + 1200, F + 1800, LENGTH - T];
+for (const px of panelXs) {
+  const h = underside(px);
+  box(T, h, DEPTH, white, px + T / 2, h / 2, -DEPTH / 2);
+}
+box(LENGTH - F, T, DEPTH, white, (F + LENGTH) / 2, T / 2, -DEPTH / 2);   // base board
+
+// ---- Shelves ----
+for (const c of CUPBOARDS) {
+  const a = c.x + T, b = c.x + c.w;
+  const tallest = underside(b) - T;
+  const gap = tallest / (c.shelves + 1);
+  for (let k = 1; k <= c.shelves; k++) {
+    const h = k * gap;
+    const start = Math.max(a, xAt(h + T + T) + 4);
+    if (b - start < 60) continue;
+    box(b - start, T, DEPTH - 20, white, (start + b) / 2, h + T / 2, -DEPTH / 2 - 10);
+  }
+}
+
+// ---- End shelving (open shelves on the outside of the end panel) ----
+const ES = 300;                                 // depth of end shelving
+box(ES, T, DEPTH, white, LENGTH + ES / 2, HEIGHT - T / 2, -DEPTH / 2);
+box(ES, T, T, white, LENGTH + ES / 2, T / 2, -T / 2);
+for (const z of [-DEPTH + T / 2, -T / 2]) box(ES, HEIGHT, T, white, LENGTH + ES / 2, HEIGHT / 2, z);
+for (let k = 1; k <= 4; k++) box(ES, T, DEPTH - 2 * T, white, LENGTH + ES / 2, k * HEIGHT / 5, -DEPTH / 2);
+
+// ---- Doors (mid grey) with chrome bar handles ----
+const doorTop = x => underside(x) - 3;
+function door(a, b, hingeSide) {
+  const pts = [[a, 3], [b, 3], [b, doorTop(b)]];
+  if (a < SLOPE_END && SLOPE_END < b) pts.push([SLOPE_END, doorTop(SLOPE_END)]);
+  pts.push([a, doorTop(a)]);
+  const hx = hingeSide === 'L' ? a : b;
+  const pivot = new THREE.Group();
+  pivot.position.set(hx, 0, 0);
+  pivot.rotation.y = THREE.MathUtils.degToRad(hingeSide === 'L' ? -OPEN_DEG : OPEN_DEG);
+  root.add(pivot);
+  const mesh = prism(pts.map(([x, y]) => [x - hx, y]), T, grey);
+  add(mesh, pivot);
+  // handle near the free edge, on the outer face
+  const freeX = (hingeSide === 'L' ? b : a) - hx;
+  const lx = freeX + (hingeSide === 'L' ? -50 : 50);
+  const freeTop = doorTop(hingeSide === 'L' ? b : a);
+  const hy = Math.min(1000, freeTop * 0.5);
+  const len = Math.min(220, freeTop * 0.4);
+  const bar = new THREE.Mesh(new THREE.CylinderGeometry(7, 7, len, 24), chrome);
+  bar.position.set(lx, hy, T + 32); add(bar, pivot);
+  for (const dy of [-len / 2 + 15, len / 2 - 15]) {
+    const post = new THREE.Mesh(new THREE.CylinderGeometry(5, 5, 32, 16), chrome);
+    post.rotation.x = Math.PI / 2; post.position.set(lx, hy + dy, T + 16); add(post, pivot);
+  }
+}
+for (const c of CUPBOARDS) {
+  if (c.hinge === 'pair') {
+    const mid = c.x + c.w / 2;
+    door(c.x + 2, mid - 2, 'L');
+    door(mid + 2, c.x + c.w - 2, 'R');
+  } else {
+    door(c.x + 2, c.x + c.w - 2, c.hinge);
+  }
+}
+
+// ---- Lights ----
+scene.add(new THREE.HemisphereLight('#ffffff', '#b8a990', 0.7));
+scene.add(new THREE.AmbientLight('#ffffff', 0.15));
+const fill = new THREE.DirectionalLight('#ffffff', 0.5); fill.position.set(2, 0.4, 6); scene.add(fill);
+const sun = new THREE.DirectionalLight('#fff6ea', 1.6);
+sun.position.set(-0.5, 5.5, 4.0);
+sun.target.position.set(1.6, 0.8, -0.3);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, { left: -3, right: 3, top: 3, bottom: -3, near: 1, far: 12 });
+sun.shadow.bias = -0.0015; sun.shadow.normalBias = 0.03; sun.shadow.radius = 3;
+scene.add(sun, sun.target);
+
+// ---- Camera ----
+const camera = new THREE.PerspectiveCamera(38, innerWidth / innerHeight, 0.05, 50);
+const VIEWS = {
+  left:  { pos: [-0.6, 1.55, 4.9], target: [1.75, 1.0, -0.35] },
+  right: { pos: [5.0, 1.65, 3.9],  target: [1.75, 1.0, -0.35] },
+  front: { pos: [1.7, 1.3, 5.6],  target: [1.7, 1.05, -0.35] },
+};
+const v = VIEWS[view] || VIEWS.left;
+camera.position.set(...v.pos);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(...v.target);
+controls.enableDamping = true;
+controls.update();
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
+</script>
+</body>
+</html>
