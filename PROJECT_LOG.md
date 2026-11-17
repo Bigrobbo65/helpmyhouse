@@ -55,7 +55,7 @@ A polished, fully responsive single‑page static site (no framework, no build s
 
 1. Emergency strip (24/7 callout + phone)
 2. Sticky header — logo, nav, "Get a free quote" CTA
-3. Hero — headline, trust stats, callback form, **owner badge (Rob Dettmer — CEO & Senior Engineer)**
+3. Hero — headline, trust stats, callback form, **owner badge (Trev Cupbord — CEO & Senior Engineer)**
 4. Trust bar (insured / guaranteed / fast / free quotes)
 5. Services — 9 cards (plumbing, electrical, carpentry, decorating, kitchens & bathrooms,
    building/new works, gardens, handyman/maintenance, + highlighted 24/7 emergency)
@@ -88,7 +88,7 @@ These are placeholders to replace before the site is published to helpmyhouse.co
 
 - [ ] **Phone** `0800 123 4567` → real number (appears in ~6 places)
 - [ ] **Email** `hello@helpmyhouse.co.uk` → real inbox
-- [ ] **Owner name** "Rob Dettmer" / tagline — confirm or edit in `index.html`
+- [x] **Owner name** set to "Trev Cupbord" (tagline still to confirm)
 - [ ] **Reviews** — replace the 3 sample testimonials with real customer quotes
 - [ ] **Stats** (4.9★, 15+ yrs, £5m cover) — confirm actual figures
 - [ ] **Forms** are front‑end only — wire to an email service (e.g. Formspree) or backend
